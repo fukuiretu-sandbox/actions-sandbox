@@ -13,13 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Comment Checking
+      - id: step1
         run: |
           echo "Comment Checking"
-          echo "body: ${{ github.event.comment.body }}"
-          echo "comment_user: ${{ github.event.comment.user.login }}"
-      - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
+          echo "::set-output name=commnet_body::${{ github.event.comment.body }}"
+          echo "::set-output name=comment_user::${{ github.event.comment.user.login }}"
+      - id: step2
+        run: |
+          echo "commnet_body: ${{ steps.step1.outputs.commnet_body }}"
+          echo "comment_user: ${{ steps.step1.outputs.comment_user }}"
+           
+      # - uses: actions/checkout@v2
+      # - run: |
+      #     npm install
+      # - run: |
+      #     npm run all
