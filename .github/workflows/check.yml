@@ -7,8 +7,7 @@ on:
 
 jobs:
   check:
-    if: github.event.comment.body == '@github 承認'
-    # if: github.event_name == 'issue_comment' && github.event.action == 'created'
+    if: contains(github.event.pull_request.labels.*.name, 'finance') && github.event.comment.body == '@github 承認'
     runs-on: ubuntu-latest
 
     steps:
