@@ -8,6 +8,7 @@ on:
 jobs:
   check:
     # if: github.event.comment.body == '!github 承認'
+    if: github.event_name == 'issue_comment' && github.event.action == 'created'
     runs-on: ubuntu-latest
 
     steps:
