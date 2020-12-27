@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "Comment Checking"
           echo "body: ${{ github.event.comment.body }}"
-          echo "current_user: ${{ github.event.issue.user.login }}"
+          echo "comment_user: ${{ github.event.comment.user.login }}"
       - uses: actions/checkout@v2
       - run: |
           npm install
