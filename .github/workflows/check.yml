@@ -12,7 +12,9 @@ jobs:
 
     steps:
       - name: Comment Checking
-        run: echo "Comment Checking"
+        run: |
+          echo "Comment Checking" |
+          echo {{ github.event.comment.body }}
       - uses: actions/checkout@v2
       - run: |
           npm install
