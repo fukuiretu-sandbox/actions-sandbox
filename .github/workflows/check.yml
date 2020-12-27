@@ -22,9 +22,14 @@ jobs:
         run: |
           echo "commnet_body: ${{ steps.step1.outputs.commnet_body }}"
           echo "comment_user: ${{ steps.step1.outputs.comment_user }}"
-           
-      # - uses: actions/checkout@v2
-      # - run: |
-      #     npm install
-      # - run: |
-      #     npm run all
+      - id: step3
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'hogeの承認を確認しました'
+            })
