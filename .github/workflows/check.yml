@@ -33,3 +33,6 @@ jobs:
               repo: context.repo.repo,
               body: 'hogeの承認を確認しました'
             })
+      - id: step4
+        run: |
+          echo "::error fail test!!"
