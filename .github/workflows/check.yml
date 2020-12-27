@@ -8,8 +8,8 @@ on:
 jobs:
   check:
     if: |
-      contains(github.event.issue.labels.*.name, 'finance') && 
-      github.event.comment.body == '@github 承認' &&
+      contains(github.event.issue.labels.*.name, 'finance') &&
+      github.event.comment.body == '@github 承認'
     runs-on: ubuntu-latest
 
     steps:
