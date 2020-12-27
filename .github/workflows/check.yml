@@ -34,6 +34,18 @@ jobs:
               body: 'hogeの承認を確認しました'
             })
       - id: step4
+        if: contains(github.event.issue.labels.*.name, 'hoge承認済み') == false
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['hoge承認済み']
+            })
+      - id: step5
         run: |
           echo ::error file=.github/workflows/check.yml,line=38,col=11::実行されないステップ
           exit 1
