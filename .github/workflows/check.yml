@@ -7,14 +7,17 @@ on:
 
 jobs:
   check:
-    if: contains(github.event.issue.labels.*.name, 'finance') && github.event.comment.body == '@github 承認'
+    if: |
+      contains(github.event.issue.labels.*.name, 'finance') && 
+      github.event.comment.body == '@github 承認' &&
     runs-on: ubuntu-latest
 
     steps:
       - name: Comment Checking
         run: |
-          echo "Comment Checking" |
+          echo "Comment Checking"
           echo "body: ${{ github.event.comment.body }}"
+          ehco "current_user: ${{ github.event.issue.user.login }}"
       - uses: actions/checkout@v2
       - run: |
           npm install
