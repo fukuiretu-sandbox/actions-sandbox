@@ -7,45 +7,48 @@ on:
 
 jobs:
   check:
-    if: |
-      contains(github.event.issue.labels.*.name, 'finance') &&
-      github.event.comment.body == '@github 承認'
+    if: contains(github.event.issue.labels.*.name, 'finance')
     runs-on: ubuntu-latest
 
     steps:
       - id: step1
-        run: |
-          echo "Comment Checking"
-          echo "::set-output name=commnet_body::${{ github.event.comment.body }}"
-          echo "::set-output name=comment_user::${{ github.event.comment.user.login }}"
+        uses: fukuiretu/actions-issue-comment-validates@3a741e4
       - id: step2
         run: |
-          echo "commnet_body: ${{ steps.step1.outputs.commnet_body }}"
-          echo "comment_user: ${{ steps.step1.outputs.comment_user }}"
-      - id: step3
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'hogeの承認を確認しました'
-            })
-      - id: step4
-        if: contains(github.event.issue.labels.*.name, 'hoge承認済み') == false
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['hoge承認済み']
-            })
-      - id: step5
-        run: |
-          echo ::error file=.github/workflows/check.yml,line=38,col=11::実行されないステップ
-          exit 1
+          echo "check1: ${{ steps.step1.outputs.check1 }}"
+      # - id: step1
+      #   run: |
+      #     echo "Comment Checking"
+      #     echo "::set-output name=commnet_body::${{ github.event.comment.body }}"
+      #     echo "::set-output name=comment_user::${{ github.event.comment.user.login }}"
+      # - id: step2
+      #   run: |
+      #     echo "commnet_body: ${{ steps.step1.outputs.commnet_body }}"
+      #     echo "comment_user: ${{ steps.step1.outputs.comment_user }}"
+      # - id: step3
+      #   uses: actions/github-script@v3
+      #   with:
+      #     github-token: ${{secrets.GITHUB_TOKEN}}
+      #     script: |
+      #       github.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: 'hogeの承認を確認しました'
+      #       })
+      # - id: step4
+      #   if: contains(github.event.issue.labels.*.name, 'hoge承認済み') == false
+      #   uses: actions/github-script@v3
+      #   with:
+      #     github-token: ${{secrets.GITHUB_TOKEN}}
+      #     script: |
+      #       github.issues.addLabels({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         labels: ['hoge承認済み']
+      #       })
+      # - id: step5
+      #   run: |
+      #     echo ::error file=.github/workflows/check.yml,line=38,col=11::実行されないステップ
+      #     exit 1

@@ -1,0 +1,5 @@
+validates:
+  - key: check1
+    body: "@github-actions 承認しました"
+    users:
+      - fukuiretu
