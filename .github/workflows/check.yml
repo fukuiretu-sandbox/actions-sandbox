@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - id: step1
-        uses: fukuiretu/actions-issue-comment-validates@af2c6d4
+        uses: fukuiretu/actions-issue-comment-validates@71e8ac9
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - id: step2
