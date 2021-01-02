@@ -13,6 +13,8 @@ jobs:
     steps:
       - id: step1
         uses: fukuiretu/actions-issue-comment-validates@3a741e4
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
       - id: step2
         run: |
           echo "check1: ${{ steps.step1.outputs.check1 }}"
