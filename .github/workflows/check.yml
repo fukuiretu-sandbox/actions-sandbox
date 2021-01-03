@@ -18,6 +18,18 @@ jobs:
       - id: step2
         run: |
           echo "check1: ${{ steps.step1.outputs.check1 }}"
+      - id: step3
+        if: steps.step1.outputs.check1
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'hogehogeの承認を確認しました'
+            })
       # - id: step1
       #   run: |
       #     echo "Comment Checking"
