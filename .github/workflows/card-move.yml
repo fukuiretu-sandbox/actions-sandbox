@@ -14,3 +14,20 @@ jobs:
           echo "user: ${{ github.event.project_card.creator.login }}"
           echo "note: ${{ github.event.project_card.note }}"
           echo "column_url: ${{ github.event.project_card.column_url }}"
+      - id: step2
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          custom_payload: |
+            {
+              text: "Custom Field Check",
+              attachments: [{
+                "author_name": "Kudos Bot",
+                fallback: 'fallback',
+                color: 'good',
+                title: "{{ github.event.project_card.creator.login }}より感謝のお気持ちが届いています",
+                text: 'いつもありがとう'
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
