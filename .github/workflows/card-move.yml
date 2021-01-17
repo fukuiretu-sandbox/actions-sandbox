@@ -7,21 +7,19 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      to_username: ${{ steps.set-to-username.outputs.username }}
-    steps:
-    - id: set-to-username
-      if: ${{ github.event.project_card.column_id }} == 12497383
-      run: echo "::set-output name=username::test"
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
     steps:
       - id: step1
-        run: |
-          echo "user: ${{ github.event.project_card.creator.login }}"
-          echo "note: ${{ github.event.project_card.note }}"
-          echo "column_url: ${{ github.event.project_card.column_url }}"
+        uses: actions/github-script@v3
+        with:
+          script: |
+            let result;
+            switch (context.project_card.column_id) {
+              case: 12497383
+                result = 'test'
+              default:
+                result = 'unknown'
+            }
+          result-encoding: string
       - id: step2
         uses: 8398a7/action-slack@v3
         with:
@@ -30,7 +28,7 @@ jobs:
             {
               username: 'Kudos Bot',
               icon_emoji: ':octocat:',
-              text: "${{ github.event.project_card.creator.login }}より${{ needs.job1.outputs.to_username }}へ感謝のお気持ちが届いています",
+              text: "${{ github.event.project_card.creator.login }}より${{ steps.step1.outputs.result }}へ感謝のお気持ちが届いています",
               attachments: [{
                 fallback: 'fallback',
                 color: 'good',
