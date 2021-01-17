@@ -21,6 +21,8 @@ jobs:
                 result = 'unknown';
                 break;
             }
+
+            return result;
           result-encoding: string
       - id: step2
         uses: 8398a7/action-slack@v3
