@@ -13,11 +13,13 @@ jobs:
         with:
           script: |
             let result;
-            switch (context.project_card.column_id) {
-              case: 12497383
-                result = 'test'
+            switch(context.project_card.column_id) {
+              case 12497383:
+                result = 'test';
+                break;
               default:
-                result = 'unknown'
+                result = 'unknown';
+                break;
             }
           result-encoding: string
       - id: step2
