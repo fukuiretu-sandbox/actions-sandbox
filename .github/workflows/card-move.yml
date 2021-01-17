@@ -1,0 +1,14 @@
+name: 'card-move'
+on:
+  project_card:
+    types:
+      - created
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: step1
+        run: |
+          echo "user: ${{ github.project_card.creator.login }}"
