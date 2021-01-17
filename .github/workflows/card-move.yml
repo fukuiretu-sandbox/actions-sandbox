@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             let result;
-            switch(context.project_card.column_id) {
+            switch(context.payload.project_card.column_id) {
               case 12497383:
                 result = 'test';
                 break;
