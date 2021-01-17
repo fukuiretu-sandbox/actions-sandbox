@@ -11,4 +11,4 @@ jobs:
     steps:
       - id: step1
         run: |
-          echo "user: ${{ github.project_card.creator.login }}"
+          echo "user: ${{ github.event.project_card.creator.login }}"
