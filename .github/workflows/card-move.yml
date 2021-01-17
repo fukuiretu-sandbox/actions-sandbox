@@ -20,12 +20,12 @@ jobs:
           status: custom
           custom_payload: |
             {
-              text: "Custom Field Check",
+              username: 'Kudos Bot',
+              icon_emoji: ':octocat:',
+              text: "${{ github.event.project_card.creator.login }}より感謝のお気持ちが届いています",
               attachments: [{
-                "author_name": "Kudos Bot",
                 fallback: 'fallback',
                 color: 'good',
-                title: "{{ github.event.project_card.creator.login }}より感謝のお気持ちが届いています",
                 text: 'いつもありがとう'
               }]
             }
