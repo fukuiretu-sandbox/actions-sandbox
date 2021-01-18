@@ -6,6 +6,7 @@ on:
 
 jobs:
   job1:
+    if: contains(github.event.project_card.project_url, '\/projects\/1')
     runs-on: ubuntu-latest
     steps:
       - id: step1
