@@ -6,7 +6,7 @@ on:
 
 jobs:
   job1:
-    # if: endsWith(github.event.project_card.project_url, '/projects/1')
+    if: endsWith(github.event.project_card.project_url, '/projects/10872213')
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ toJSON(github) }}
