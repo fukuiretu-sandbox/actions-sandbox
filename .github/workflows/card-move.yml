@@ -6,9 +6,10 @@ on:
 
 jobs:
   job1:
-    if: endsWith(github.event.project_card.project_url, '/projects/1')
+    # if: endsWith(github.event.project_card.project_url, '/projects/1')
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ toJSON(github) }}
       - id: step1
         uses: actions/github-script@v3
         with:
