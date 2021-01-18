@@ -9,7 +9,6 @@ jobs:
     if: endsWith(github.event.project_card.project_url, '/projects/10872213')
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJSON(github) }}
       - id: step1
         uses: actions/github-script@v3
         with:
