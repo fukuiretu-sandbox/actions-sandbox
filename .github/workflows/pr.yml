@@ -1,0 +1,15 @@
+name: 'pr'
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - id: step1
+        uses: fukuiretu/actions-pr-changed-files-matcher@85611593e7aa6ab1951a1f2c5e76ed33c619d37d
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
