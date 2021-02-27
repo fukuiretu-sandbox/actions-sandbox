@@ -13,5 +13,5 @@ jobs:
         uses: fukuiretu/actions-pr-changed-files-matcher@main
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-          s3-bukcet: "2021-fukuiretu-data"
+          s3-bucket: "2021-fukuiretu-data"
           s3-key: "test/list-20210223.txt"
