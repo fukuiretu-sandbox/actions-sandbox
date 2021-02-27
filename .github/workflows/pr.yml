@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: step1
-        uses: fukuiretu/actions-pr-changed-files-matcher@85611593e7aa6ab1951a1f2c5e76ed33c619d37d
+        uses: fukuiretu/actions-pr-changed-files-matcher@main
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          s3-bukcet: "2021-fukuiretu-data"
+          s3-key: "test/list-20210223.txt"
