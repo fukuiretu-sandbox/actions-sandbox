@@ -14,4 +14,8 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           s3-bucket: "2021-fukuiretu-data"
-          s3-key: "test/list-20210223.txt"
+          s3-prefix: "test/list-20210223.txt"
+        env:
+          AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+          AWS_DEFAULT_REGION: "${{ secrets.AWS_DEFAULT_REGION }}"
